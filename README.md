@@ -1,5 +1,6 @@
-Self taught python
+Questions
 
-1. Course: Intro to CS and programming using Python: MIT, 6.00, John Guttag
+
+1. py6 : How to updateandclean function?
  
 
