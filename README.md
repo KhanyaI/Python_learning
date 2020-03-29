@@ -11,6 +11,7 @@
   C) Machine Learning  - Andrew Ng, Stanford: Coursera 
   https://www.coursera.org/learn/machine-learning
 
+
 2. Projects:
   A combination of datasets from Kaggle and basic data wrangling at Qunomedical using NumPy and Pandas 
  
