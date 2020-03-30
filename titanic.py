@@ -114,13 +114,6 @@ sns.barplot(x="Family", y="Sex", hue="Survived", data=df,palette = 'coolwarm')
 plt.title('Family - Gender Survival Distribution',size=16)
 plt.show()
 """
-#Train on clustering, then pick data points - would they have survived or died?
-
-"""
-Tell the Titanic story
-
-15. SVM - survived or no
-"""
 
 
 
