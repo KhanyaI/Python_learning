@@ -21,7 +21,7 @@ books_df_refined = books_df[['title', 'authors', 'average_rating','# num_pages',
 
 authors = books_df_refined['authors'].value_counts()[:20]
 
-"""
+
 ## using seaborn 
 sns.barplot(x = authors, y = authors.index, palette='deep')
 plt.title("Most Occurring Authors")
