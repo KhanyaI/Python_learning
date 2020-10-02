@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.cluster import KMeans
 from sklearn.manifold import TSNE
 
-
+##Preprocessing 
 def wordprocess(file):
 
 		stemmer = WordNetLemmatizer()
@@ -31,12 +31,16 @@ def wordprocess(file):
 
 def vectorize(words):
 	
-	x_train ,x_test = train_test_split(preprocess,test_size=0.2)  
+	x_train ,x_test = train_test_split(words,test_size=0.2)  
 	vectorizer = TfidfVectorizer()
 	tfidf_transform = vectorizer.fit_transform(x_train)
 	feature_names = vectorizer.get_feature_names()
 	
+	return x_test, vectorizer, tfidf_transform
 	
+
+def cluster(test, tfidftransform, vectorizer):
+		
 	"""
 	Elbow curve
 	K = range(1,50)
@@ -47,13 +51,12 @@ def vectorize(words):
 		distance.append(kmtest.inertia_)
 
 	"""
-	
 	model = KMeans(n_clusters=30, init='k-means++', max_iter=100,n_init=1)
 	model.fit(tfidf_transform)
 	centroids = model.cluster_centers_
 
-	testing = vectorizer.transform(x_test)
-	labels = model.fit_predict(tfidf_transform)
+	testing = vectorizer.transform(test)
+	labels = model.fit_predict(tfidftransform)
 	prediction = model.predict(testing)
 	#print("Tested word is",x_test[0]) # just an example
 	#print("Text belongs to cluster number {0}".format(prediction))
@@ -74,7 +77,8 @@ if __name__ == '__main__':
 	metadata_df.sha.dropna(inplace=True)
 	metadata_df.abstract.dropna(inplace=True)
 	preprocess = wordprocess(metadata_df.abstract)
-	vectorize(preprocess)
+	test, vectorizer, transformer = vectorize(preprocess)
+	cluster(test, vectorizer, transformer)
 
 
 
